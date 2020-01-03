@@ -1,4 +1,4 @@
-#JavaScript101 - Code Examples
+<h1>JavaScript101 - Code Examples</h1>
 
   ● JavaScript Data Types<br>
     •Objects
