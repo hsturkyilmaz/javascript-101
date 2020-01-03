@@ -1,0 +1,76 @@
+<!-- HTTP GET Request -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HTTP GET Request</title>
+</head>
+<style>
+ul {
+    width: 50%;
+    margin: 0 auto;
+}
+li {
+    width: 100%;
+    float: left;
+    list-style: none;
+    padding: 12px 0px;
+    border-bottom: 1px solid #ddd;
+}
+span {
+    width: 100%;
+    float: left;
+}
+img {
+    width: 100px;
+}
+</style>
+<body>
+    <h1>IMDB SEARCH</h1>
+    <input id="input" type="text" placeholder="Film ara">
+    <button onclick="search()">Ara</button>
+    <div class="wrapper"></div>
+</body>
+
+<script>
+const url = 'http://www.omdbapi.com/?apikey=b2c4c7ec&s='
+const dummyImage = 'https://www.softwarearge.com/wp-content/uploads/2018/09/no-image-icon-6.png'
+let searchInput = 'anatolia'
+
+function httpGet (url) {
+    let elem = '<ul>'
+    let xmlHttp = new XMLHttpRequest()
+    xmlHttp.open( 'GET', url, false )
+    xmlHttp.send( null )
+    let data = JSON.parse(xmlHttp.responseText).Search
+    
+    if (data) {
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].Poster !== 'N/A') {
+                elem += '<li> <img src="'+ data[i].Poster +'" <span>'+ data[i].Title +'</span> <span>'+ data[i].Year +'</span> </li>'
+            } else {
+                elem += '<li> <img src="'+ dummyImage +'" <span>'+ data[i].Title +'</span> <span>'+ data[i].Year +'</span> </li>'
+            }
+        }
+    } else {
+        alert('Data Yok')
+    }
+
+    elem += '</ul>'
+    document.querySelector('.wrapper').innerHTML = elem
+}
+
+function search () {
+    let value = document.querySelector('#input').value
+    searchInput = value
+    httpGet(url + searchInput)
+}
+
+httpGet(url + searchInput)
+
+</script>
+
+</html>

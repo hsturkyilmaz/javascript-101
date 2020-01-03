@@ -1,0 +1,45 @@
+<!-- Multidimensional Arrays -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JavaScript Multidimensional Arrays</title>
+</head>
+<body>
+    <h2>JavaScript Multidimensional Arrays</h2>
+
+    <p>Today's playlist:</p>
+
+    <p id="demo"></p>
+
+    <script>
+    var playList = [
+      ["Sazlar Çalınır Çamlıca'nın Bahçelerinde", "Kani Karaca"],
+      ["Yalnızlar Rıhtımı", "Erkin Koray"],
+      ["Violet Hill", "Coldplay"],
+      ["Clocks", "Coldplay"],
+      ["Sarı Laleler", "MFÖ"],
+      ["Uzun Yollara Devam", "Sagopa Kajmer"]
+    ];
+
+    function print(message) {
+      document.write(message);
+    }
+
+    function printSongs(songs) {
+      var listHTML;
+      listHTML = '<ul>';
+      for (var i = 0; i < songs.length; i += 1) {
+        listHTML += '<li>' + ' Song: ' + songs[i][0] + '<br>' + ' Artist: ' + songs[i][1] + '</li>' + '<br>';
+      }
+      listHTML += '</ul>';
+      print(listHTML);
+    }
+
+    printSongs(playList);
+    </script>
+</body>
+</html>

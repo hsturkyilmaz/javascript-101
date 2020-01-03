@@ -1,0 +1,105 @@
+<!-- CRUD Example -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>List of Staff</title>
+</head>
+<style>
+    ul, .form {
+        width: 50%;
+        margin: 0 auto;
+        padding: 14px 0px;
+    }
+    li {
+        width: 100%;
+        float: left;
+        list-style: none;
+        border-bottom: 1px solid #ddd;
+        padding: 12px 0px;
+        cursor: pointer;
+    }
+    li:hover {
+        background: #f1f1f1;
+    }
+    span {
+        width: 100%;
+        float: left;
+    }
+</style>
+<body>
+    <div class="form">
+        <input type="hidden" id="index" value="">
+        <label>Name</label>
+        <input type="text" id="name">
+        <label>Phone</label>
+        <input type="text" id="phone">
+        <div class="button">
+            
+        </div>
+    </div>
+    <div class="wrapper">
+    </div>
+</body>
+
+<script>
+let editMode = false
+let arr = [
+    { name: 'Şaban Cılasun', phone: '+905069439418' },
+    { name: 'Ömer Taştemir', phone: '+905316726033' },
+    { name: 'İsmail Ekin', phone: '+905416064374' }
+]
+
+function print(data) {
+    let elem = '<ul>'
+    for (let i = 0; i < data.length; i++) {
+        elem += '<li><span>' + 'Name: ' + data[i].name + '</span> <span>' + 'Phone: ' + data[i].phone + '</span> <div onclick="edit('+i+')"> Edit </div> <div onclick="remove('+i+')"> Delete </div> </li>'
+    }
+    elem += '</ul>'
+    document.querySelector('.wrapper').innerHTML = elem
+}
+
+function submit () {
+    let name = document.querySelector('#name').value
+    let phone = document.querySelector('#phone').value
+    let data = {
+        name: name,
+        phone: phone
+    }
+    arr.push(data)
+    print(arr)
+}
+
+function edit (index) {
+    document.querySelector('.button').innerHTML = ''
+    editMode = true
+    button = '<button onclick="update()">Edit</button>'
+    document.querySelector('.button').innerHTML = button
+    document.querySelector('#index').value = index
+    document.querySelector('#name').value = arr[index].name
+    document.querySelector('#phone').value = arr[index].phone
+}
+
+function update () {
+    let index = document.querySelector('#index').value
+    let name = document.querySelector('#name').value
+    let phone = document.querySelector('#phone').value
+    arr[index].name = name
+    arr[index].phone = phone
+    document.querySelector('.button').innerHTML = '<button onclick="submit()">Add</button>'
+    print(arr)
+}
+
+function remove (index) {
+    arr.splice(index, 1)
+    print(arr)
+}
+
+document.querySelector('.button').innerHTML = '<button onclick="submit()">Add</button>'
+print(arr)
+</script>
+
+</html>
