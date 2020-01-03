@@ -1,7 +1,10 @@
 <h1>JavaScript101 - Code Examples</h1>
 
-  ● JavaScript Data Types<br>
-     •Objects •Arrays •Multidimensional Arrays
+  ● JavaScript Objects
+  
+  ● JavaScript Arrays
+    
+  ● JavaScript Multidimensional Arrays
 
   ● JavaScript If/Else Statement
   
